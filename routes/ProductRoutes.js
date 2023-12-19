@@ -1,4 +1,3 @@
-// routes/ProductRoutes.js
 const express = require("express");
 const multer = require("multer");
 const ProductController = require("../controllers/ProductController");
@@ -20,8 +19,9 @@ const upload = multer({ storage: storage });
 
 router.post("/", upload.single("gambar"), ProductController.createProduct);
 // router.post("/", ProductController.createProduct);
-router.get("/product-sayuran", ProductController.getAllProducts);
+router.get("/", ProductController.getAllProducts);
 router.get("/:id", ProductController.getProductById);
+router.get('/jenis/:jenis', ProductController.getProductByJenis);
 router.put("/:id", upload.single("gambar"), ProductController.updateProduct);
 router.delete("/:id", ProductController.deleteProduct);
 

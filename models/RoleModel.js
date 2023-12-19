@@ -1,10 +1,9 @@
-// models/RoleModel.js
 const mysql = require("mysql2/promise");
 
 const connection = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "abc1234",
+  password: "1234",
   database: "db",
 });
 

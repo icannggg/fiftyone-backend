@@ -1,15 +1,14 @@
-// models/ProductModel.js
 const mysql = require("mysql2/promise");
 
 const connection = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "abc1234",
+  password: "1234",
   database: "db",
 });
 
-async function createProduct(product_id, product_name, stok, harga, gambar) {
-  const [results] = await connection.execute("INSERT INTO products (product_id, product_name, stok, harga, gambar) VALUES (?, ?, ?, ?, ?)", [product_id, product_name, stok, harga, gambar]);
+async function createProduct(product_id, product_name, stok, harga, gambar, jenis) {
+  const [results] = await connection.execute("INSERT INTO products (product_id, product_name, stok, harga, gambar, jenis) VALUES (?, ?, ?, ?, ?)", [product_id, product_name, stok, harga, gambar, jenis]);
   return results.insertId;
 }
 
@@ -21,6 +20,11 @@ async function getAllProducts() {
 async function getProductById(id) {
   const [results] = await connection.execute("SELECT * FROM products WHERE id = ?", [id]);
   return results[0];
+}
+
+async function getProductByJenis(jenis) {
+  const [results] = await connection.execute("SELECT * FROM products WHERE jenis = ?", [jenis]);
+  return results;
 }
 
 async function updateProduct(id, data) {
@@ -46,6 +50,7 @@ module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
+  getProductByJenis,
   updateProduct,
   deleteProduct,
 };

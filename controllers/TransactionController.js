@@ -1,4 +1,3 @@
-// controllers/TransactionController.js
 const TransactionModel = require('../models/TransactionModel');
 
 async function createTransaction(req, res) {

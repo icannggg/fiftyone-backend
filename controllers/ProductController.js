@@ -1,9 +1,8 @@
-// controllers/ProductController.js
 const ProductModel = require("../models/ProductModel");
 
 async function createProduct(req, res) {
   try {
-    const { product_id, product_name, stok, harga } = req.body;
+    const { product_id, product_name, stok, harga, jenis } = req.body;
     const gambar = req.file ? req.file.originalname : null;
     // Generate random code (contoh menggunakan timestamp)
     const timestamp = Date.now();
@@ -13,7 +12,7 @@ async function createProduct(req, res) {
     // const randomCode = `V-${generateKode}`;
     const randomCode = `V-${timestamp}`;
 
-    const productId = await ProductModel.createProduct(randomCode, product_name, stok, harga, gambar);
+    const productId = await ProductModel.createProduct(randomCode, product_name, stok, harga, gambar, jenis);
     res.status(201).json({ id: productId, message: "Product created successfully" });
   } catch (error) {
     console.error(error);
@@ -47,6 +46,18 @@ async function getProductById(req, res) {
   }
 }
 
+async function getProductByJenis(req, res) {
+  const { jenis } = req.params;
+
+  try {
+    const products = await ProductModel.getProductByJenis(jenis);
+    res.status(200).json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 async function updateProduct(req, res) {
   try {
     const { id } = req.params;
@@ -76,6 +87,7 @@ module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
+  getProductByJenis,
   updateProduct,
   deleteProduct,
 };
