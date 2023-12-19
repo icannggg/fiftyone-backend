@@ -10,6 +10,18 @@ async function getAllUsers(req, res) {
     }
   }
 
+async function deleteUser(req, res) {
+  try {
+    const { id } = req.params;
+    await UserModel.deleteUser(id);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 module.exports = {
     getAllUsers,
+    deleteUser,
   };
