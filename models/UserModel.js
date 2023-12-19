@@ -15,7 +15,7 @@ async function createUser(name, email, password, role_id) {
 }
 
 async function getAllUsers() {
-  const [results] = await connection.execute("SELECT email , name, createdAt FROM users where role_id = 2");
+  const [results] = await connection.execute("SELECT id, email , name, createdAt FROM users where role_id = 2");
   return results;
 }
 

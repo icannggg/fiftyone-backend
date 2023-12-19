@@ -9,7 +9,7 @@ const connection = mysql.createPool({
 
 async function getReports() {
   const [results] = await connection.execute(
-    "SELECT transactions.code_trans, users.name, transactions.tot_price, transactions.createdAt FROM transactions JOIN users ON transactions.user_id = users.id"
+    "SELECT transactions.id, transactions.code_trans, users.name, transactions.tot_price, transactions.createdAt FROM transactions JOIN users ON transactions.user_id = users.id"
   );
   return results;
 }

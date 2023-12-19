@@ -21,7 +21,7 @@ router.post("/", upload.single("gambar"), ProductController.createProduct);
 // router.post("/", ProductController.createProduct);
 router.get("/", ProductController.getAllProducts);
 router.get("/:id", ProductController.getProductById);
-router.get('/jenis/:jenis', ProductController.getProductByJenis);
+router.get("/jenis/:jenis", ProductController.getProductByJenis);
 router.put("/:id", upload.single("gambar"), ProductController.updateProduct);
 router.delete("/:id", ProductController.deleteProduct);
 

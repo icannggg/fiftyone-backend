@@ -54,7 +54,7 @@ async function getProductByJenis(req, res) {
     res.status(200).json(products);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: error });
   }
 }
 
@@ -62,13 +62,13 @@ async function updateProduct(req, res) {
   try {
     const { id } = req.params;
     const { product_name, stok, harga, jenis } = req.body;
-    const gambar = req.file ? req.file.filename : null;
+    const gambar = req.file ? req.file.originalname : null;
 
-    await ProductModel.updateProduct(id, { product_name, stok, harga, gambar, jenis });
+    await ProductModel.updateProduct(id, { product_name, stok, harga, jenis, gambar });
     res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: error });
   }
 }
 
