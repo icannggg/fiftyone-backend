@@ -44,7 +44,7 @@ async function updateProduct(id, data) {
     await connection.execute("UPDATE products SET product_id = ?, product_name = ?, stok = ?, harga = ?, gambar = ?, jenis = ? WHERE id = ?", updateValues);
   } catch (error) {
     console.error(error);
-    throw error; 
+    throw error;
   }
 }
 
