@@ -28,17 +28,16 @@ async function getProductByJenis(jenis) {
 }
 
 async function updateProduct(id, data) {
-  const { product_id, product_name, stok, harga, gambar } = data;
+  const { product_id, product_name, stok, harga, gambar, jenis } = data;
 
-  // Periksa dan atur nilai default jika tidak ditemukan
   const hargaValue = harga !== "" ? harga : null;
-  const updateValues = [product_id, product_name, stok, hargaValue, gambar || null, id];
+  const updateValues = [product_id, product_name, stok, hargaValue, gambar, jenis || null, id];
 
   try {
-    await connection.execute("UPDATE products SET product_id = ?, product_name = ?, stok = ?, harga = ?, gambar = ? WHERE id = ?", updateValues);
+    await connection.execute("UPDATE products SET product_id = ?, product_name = ?, stok = ?, harga = ?, gambar = ?, jenis = ? WHERE id = ?", updateValues);
   } catch (error) {
     console.error(error);
-    throw error; // Lebih baik untuk melemparkan kembali kesalahan untuk ditangani di lapisan yang lebih tinggi
+    throw error; 
   }
 }
 

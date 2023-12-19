@@ -61,10 +61,10 @@ async function getProductByJenis(req, res) {
 async function updateProduct(req, res) {
   try {
     const { id } = req.params;
-    const { product_id, product_name, stok, harga } = req.body;
+    const { product_id, product_name, stok, harga, jenis } = req.body;
     const gambar = req.file ? req.file.filename : null;
 
-    await ProductModel.updateProduct(id, { product_id, product_name, stok, harga, gambar });
+    await ProductModel.updateProduct(id, { product_id, product_name, stok, harga, gambar, jenis });
     res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
     console.error(error);
