@@ -24,8 +24,13 @@ async function getUserByEmail(email) {
   return results[0];
 }
 
+async function deleteUser(id) {
+  await connection.execute("DELETE FROM users WHERE id = ?", [id]);
+}
+
 module.exports = {
   createUser,
   getUserByEmail,
   getAllUsers,
+  deleteUser,
 };
