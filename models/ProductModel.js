@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise");
 const connection = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "abc1234",
+  password: "1234",
   database: "db",
 });
 
@@ -35,13 +35,13 @@ async function getProductByJenis(jenis) {
 }
 
 async function updateProduct(id, data) {
-  const { product_id, product_name, stok, harga, gambar, jenis } = data;
+  const { product_name, stok, harga, gambar, jenis } = data;
 
   const hargaValue = harga !== "" ? harga : null;
-  const updateValues = [product_id, product_name, stok, hargaValue, gambar, jenis || null, id];
+  const updateValues = [product_name, stok, hargaValue, gambar, jenis || null, id];
 
   try {
-    await connection.execute("UPDATE products SET product_id = ?, product_name = ?, stok = ?, harga = ?, gambar = ?, jenis = ? WHERE id = ?", updateValues);
+    await connection.execute("UPDATE products SET product_name = ?, stok = ?, harga = ?, gambar = ?, jenis = ? WHERE id = ?", updateValues);
   } catch (error) {
     console.error(error);
     throw error; 
