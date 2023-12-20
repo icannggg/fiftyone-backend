@@ -1,4 +1,3 @@
-// controllers/AuthController.js
 const UserModel = require('../models/UserModel');
 
 async function register(req, res) {
